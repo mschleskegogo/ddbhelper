@@ -1,9 +1,11 @@
 import utilities.GogoUtilities
 
 SHELL_STEPS=sprintf('''
+  #!/bin/bash -x
+
   npm update
   npm install --production
-  [ -d "node_modules" ] && cp -R node_modules src/
+  [ -d "node_modules" ] && cp -R node_modules src/ || echo "No node_modules found, skipping"
   ''', ['JOB_NAME'])
 
 // API docs: https://jenkinsci.github.io/job-dsl-plugin/
