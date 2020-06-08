@@ -28,7 +28,7 @@ const usage = `usage: test event must include one type of parameters and an opti
 const handleData = (data, dataFunc, awsCallback) => {
   if (!!dataFunc) {
     console.log('Executing dataHandler')
-    results = dataFunc(data)
+    const results = dataFunc(data)
     if (!!results) awsCallback(null, results)
   } else {
     console.log('No dataHandler defined')
