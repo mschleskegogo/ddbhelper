@@ -31,7 +31,10 @@ const handleData = (data, dataFunc, awsCallback) => {
     const results = dataFunc(data)
     if (!!results) awsCallback(null, results)
   } else {
-    console.log('No dataHandler defined')
+    console.log('No dataHandler defined, using default')
+    dataFunc = (data) => {
+      return data
+    }
   }
 }
 
@@ -55,7 +58,7 @@ exports.handler = (event, context, callback) => {
     region: 'us-east-1',
   })
 
-  var docClient = new AWS.DynamoDB.DocumentClient()
+  const docClient = new AWS.DynamoDB.DocumentClient()
 
   if (!!queryParams) {
     console.log('Executing query')
@@ -65,7 +68,9 @@ exports.handler = (event, context, callback) => {
         callback(new Error(msg))
         return
       } else {
-        console.log('Query succeeded.')
+        console.log(
+          `Query succeeded. Count: ${data.Count} ScannedCount: ${data.ScannedCount}`
+        )
         handleData(data, dataFunc, callback)
       }
     })
@@ -77,7 +82,9 @@ exports.handler = (event, context, callback) => {
         callback(new Error(msg))
         return
       } else {
-        console.log('Scan succeeded.')
+        console.log(
+          `Scan succeeded. Count: ${data.Count} ScannedCount: ${data.ScannedCount}`
+        )
         handleData(data, dataFunc, callback)
       }
     })
