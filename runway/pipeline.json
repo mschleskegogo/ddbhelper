@@ -1,0 +1,24 @@
+{
+  "documentation": "https://git.gogoair.com/netconn/ztepdsnlambda/blob/master/README.md",
+  "notifications": {
+    "email": "mschleske@gogoair.com",
+    "slack": "#mstest"
+  },
+  "deployment": "spinnaker",
+  "env": ["dev", "stage"],
+  "services": {
+    "lambda": true,
+    "cloudwatch": true,
+    "dynamodb": [
+      "gogo-dash-int-persist-dev-aircraftevents",
+      "gogo-dash-int-persist-stage-aircraftevents"
+    ]
+  },
+  "type": "lambda",
+  "lambda": {
+    "handler": "index.handler",
+    "runtime": "nodejs12.x",
+    "app_description": "DynamoDB query helper tool"
+  },
+  "owner_email": "mschleske@gogoair.com"
+}

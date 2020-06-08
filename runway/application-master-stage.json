@@ -1,0 +1,13 @@
+{
+  "app": {
+    "lambda_memory": "256",
+    "lambda_timeout": "300",
+    "lambda_environment": {
+      "Variables": {
+        "NODE_ENV": "stage"
+      }
+    },
+    "app_description": "DynamoDB query helper tool"
+  },
+  "lambda_triggers": []
+}
