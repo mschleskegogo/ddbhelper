@@ -2,27 +2,27 @@ const AWS = require('aws-sdk')
 
 const usage = `usage: test event must include one type of parameters and an optional dataHandler:
 {
-  scanParams: {
-    TableName: 'Movies',
-    KeyConditionExpression: '#yr = :yyyy',
-    ExpressionAttributeNames: {
-      '#yr': 'year',
+  "scanParams": {
+    "TableName": "gogo-dash-int-persist-dev-aircraftevents",
+    "KeyConditionExpression": "#yr = :yyyy",
+    "ExpressionAttributeNames": {
+      "#yr": "year"
     },
-    ExpressionAttributeValues: {
-      ':yyyy': 1985,
-    },
+    "ExpressionAttributeValues": {
+      ":yyyy": 1985
+    }
   },
-  queryParams: {
-    TableName: 'Movies',
-    KeyConditionExpression: '#yr = :yyyy',
-    ExpressionAttributeNames: {
-      '#yr': 'year',
+  "queryParams": {
+    "TableName": "Movies",
+    "KeyConditionExpression": "#yr = :yyyy",
+    "ExpressionAttributeNames": {
+      "#yr": "year"
     },
-    ExpressionAttributeValues: {
-      ':yyyy': 1985,
-    },
+    "ExpressionAttributeValues": {
+      ":yyyy": 1985
+    }
   },
-  dataHandler: 'data => { console.log(data) }'
+  "dataHandler": "data => { console.log(data) }"
 }`
 
 const handleData = (data, dataFunc, awsCallback) => {
@@ -37,7 +37,7 @@ const handleData = (data, dataFunc, awsCallback) => {
 
 exports.handler = (event, context, callback) => {
   const { scanParams, queryParams, dataHandler } = event
-  let dataHandler
+  let dataFunc
 
   if (!!dataHandler) {
     dataFunc = eval(dataHandler)
