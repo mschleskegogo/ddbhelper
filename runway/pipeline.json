@@ -11,7 +11,8 @@
     "cloudwatch": true,
     "dynamodb": [
       "gogo-dash-int-persist-dev-aircraftevents",
-      "gogo-dash-int-persist-stage-aircraftevents"
+      "gogo-dash-int-persist-stage-aircraftevents",
+      "gogo-dash-int-persist-stage-unmatchedevents"
     ]
   },
   "type": "lambda",
